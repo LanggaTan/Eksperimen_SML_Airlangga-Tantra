@@ -61,5 +61,5 @@ def create_sequences(data, time_steps=10, target_col_index=0):
     np.save(f"output/y_timestep_{time_steps}", y)
     print("Data saved successfully")
 
-time_steps = int(input("Enter the number of time steps(eg 10, 20, 30): "))
-create_sequences(scaled_data, time_steps, 0)
+#time_steps = int(input("Enter the number of time steps(eg 10, 20, 30): "))
+create_sequences(scaled_data, 10, 0)
