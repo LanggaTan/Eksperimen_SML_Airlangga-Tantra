@@ -1,1 +1,37 @@
-h3h3
+name: Run Preprocess Script
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  preprocess:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Run preprocess
+        run: python preprocessing/Automate.py
+
+      - name: Upload all output files
+        uses: actions/upload-artifact@v3
+        with:
+          name: preprocessing-outputs
+          path: output/
+
+
+      
