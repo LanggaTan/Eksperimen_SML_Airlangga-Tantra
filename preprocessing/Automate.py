@@ -2,13 +2,11 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.ensemble import RandomForestRegressor
-from tensorflow.keras.preprocessing.sequence import TimeseriesGenerator
 import matplotlib.pyplot as plt
 from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
 from statsmodels.tsa.stattools import acf, pacf
 import seaborn as sns
 import joblib
-
 import os
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -62,6 +60,5 @@ def create_sequences(data, time_steps=10, target_col_index=0):
     np.save(f"output/y_timestep_{time_steps}", y)
     print("Data saved successfully")
 
-#time_steps = int(input("Enter the number of time steps(eg 10, 20, 30): "))
-
-create_sequences(scaled_data, 10, 0)
+time_steps = int(input("Enter the number of time steps(eg 10, 20, 30): "))
+create_sequences(scaled_data, time_steps, 0)
