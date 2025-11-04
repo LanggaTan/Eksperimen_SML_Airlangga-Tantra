@@ -10,6 +10,7 @@ import joblib
 import os
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
+os.makedirs("output", exist_ok=True)
 file_dir = os.path.join(script_dir, '../Data Historis JKSE_raw.csv')
 df = pd.read_csv(file_dir, parse_dates=['Tanggal'])
 
