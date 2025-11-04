@@ -49,7 +49,7 @@ scaler = MinMaxScaler(feature_range=(0, 1))
 scaled_data = scaler.fit_transform(data)
 
 np.save("scaled_stock_data.npy", scaled_data)
-joblib.dump(scaler, 'scaler.pkl')
+joblib.dump(scaler, 'output/scaler.pkl')
 
 def create_sequences(data, time_steps=10, target_col_index=0):
     X, y = [], []
@@ -58,9 +58,10 @@ def create_sequences(data, time_steps=10, target_col_index=0):
         y.append(data[i, target_col_index])  # next day's Close
     X = np.array(X)
     y = np.array(y)
-    np.save(f"X_timestep_{time_steps}", X)
-    np.save(f"y_timestep_{time_steps}", y)
+    np.save(f"output/X_timestep_{time_steps}", X)
+    np.save(f"output/y_timestep_{time_steps}", y)
     print("Data saved successfully")
 
-time_steps = int(input("Enter the number of time steps(eg 10, 20, 30): "))
-create_sequences(scaled_data, time_steps, 0)
+#time_steps = int(input("Enter the number of time steps(eg 10, 20, 30): "))
+
+create_sequences(scaled_data, 10, 0)
